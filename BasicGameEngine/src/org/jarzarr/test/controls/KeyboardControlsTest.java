@@ -13,7 +13,7 @@ public class KeyboardControlsTest implements EngineLoopInterface{
 	private int speed = 2;
 
 	public static void main(String[] args) {
-		Window.createDecoratedWindow("Test Window", null);
+		Window.createDecoratedWindow("Test Keyboard Controls", null);
 		EngineLoop loop = new EngineLoop(new KeyboardControlsTest());
 		loop.start();
 	}

@@ -5,6 +5,8 @@ import java.awt.image.BufferStrategy;
 
 import org.jarzarr.code.controls.KeyboardControl;
 import org.jarzarr.code.controls.MouseControl;
+import org.jarzarr.code.ui.UIMenuList;
+import org.jarzarr.code.ui.comp.DisplayedMenu;
 import org.jarzarr.code.window.Window;
 
 public class EngineLoop implements Runnable {
@@ -98,6 +100,8 @@ public class EngineLoop implements Runnable {
 	public void update() {
 		KeyboardControl.updateKeys();
 		MouseControl.updateMouse();
+		if (DisplayedMenu.getCurrentlyDisplayedMenu() != null) // for updating menus
+			DisplayedMenu.getCurrentlyDisplayedMenu().update();
 		loopInter.update();
 	}
 
@@ -112,6 +116,8 @@ public class EngineLoop implements Runnable {
 		g.clearRect(0, 0, Window.getCanvas().getWidth(), Window.getCanvas().getHeight());
 
 		// Render
+		if (DisplayedMenu.getCurrentlyDisplayedMenu() != null) // for rendering menus
+			DisplayedMenu.getCurrentlyDisplayedMenu().render(g);
 		loopInter.render(g);
 		// Render End
 

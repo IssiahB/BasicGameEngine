@@ -14,7 +14,7 @@ public class MouseClickControls implements EngineLoopInterface {
 	private int mouseX = 20, mouseY = 20;
 
 	public static void main(String[] args) {
-		Window.createDecoratedWindow("Test Window", null);
+		Window.createDecoratedWindow("Test Mouse Controls", null);
 		EngineLoop loop = new EngineLoop(new MouseClickControls());
 		loop.start();
 	}
