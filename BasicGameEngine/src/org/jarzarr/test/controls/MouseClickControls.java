@@ -1,4 +1,4 @@
-package org.jarzarr.test;
+package org.jarzarr.test.controls;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,14 +8,14 @@ import org.jarzarr.code.EngineLoopInterface;
 import org.jarzarr.code.controls.MouseControl;
 import org.jarzarr.code.window.Window;
 
-public class GameEngineTest implements EngineLoopInterface {
+public class MouseClickControls implements EngineLoopInterface {
 	
 	private int x = 20, y = 20;
 	private int mouseX = 20, mouseY = 20;
 
 	public static void main(String[] args) {
 		Window.createDecoratedWindow("Test Window", null);
-		EngineLoop loop = new EngineLoop(new GameEngineTest());
+		EngineLoop loop = new EngineLoop(new MouseClickControls());
 		loop.start();
 	}
 
@@ -26,9 +26,9 @@ public class GameEngineTest implements EngineLoopInterface {
 
 	@Override
 	public void update() {
-		if (MouseControl.mouseChangedPosition) {
-			mouseX = MouseControl.mouseLeftClickPosition.x;
-			mouseY = MouseControl.mouseLeftClickPosition.y;
+		if (MouseControl.hasMouseChangedPosition()) {
+			mouseX = MouseControl.getMouseLeftClickPosition().x;
+			mouseY = MouseControl.getMouseLeftClickPosition().y;
 		}
 		
 		if (x > mouseX)

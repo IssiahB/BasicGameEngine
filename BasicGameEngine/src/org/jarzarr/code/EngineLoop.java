@@ -26,6 +26,11 @@ public class EngineLoop implements Runnable {
 	public synchronized void start() {
 		if (running) // if game already running can't start
 			return;
+		
+		if (Window.getFrame() == null) { // if window has not been created
+			System.err.println("Must create a window before starting game loop");
+			return;
+		}
 
 		// sets running to true
 		running = true;
