@@ -16,7 +16,7 @@ public class KeyboardControl implements KeyListener {
 		dKey = keys[KeyEvent.VK_D];
 		
 		shiftKey = keys[KeyEvent.VK_SHIFT];
-		spaceKey = keys[KeyEvent.VK_SHIFT];
+		spaceKey = keys[KeyEvent.VK_SPACE];
 	}
 
 	@Override
@@ -48,9 +48,9 @@ public class KeyboardControl implements KeyListener {
 			keys[KeyEvent.VK_D] = false;
 		
 		if (e.getKeyCode() == KeyEvent.VK_SHIFT)
-			keys[KeyEvent.VK_SHIFT] = true;
+			keys[KeyEvent.VK_SHIFT] = false;
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
-			keys[KeyEvent.VK_SPACE] = true;
+			keys[KeyEvent.VK_SPACE] = false;
 	}
 
 	@Override

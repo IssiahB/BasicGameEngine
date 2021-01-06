@@ -6,12 +6,14 @@ import java.awt.Graphics2D;
 import org.jarzarr.code.EngineLoop;
 import org.jarzarr.code.EngineLoopInterface;
 import org.jarzarr.code.controls.MouseControl;
+import org.jarzarr.code.controls.MouseInterface;
 import org.jarzarr.code.window.Window;
 
-public class MouseClickControls implements EngineLoopInterface {
+public class MouseClickControls implements EngineLoopInterface, MouseInterface {
 	
-	private int x = 20, y = 20;
-	private int mouseX = 20, mouseY = 20;
+	private int mouseX = 0, mouseY = 0;
+	private int x = 0, y = 0;
+	private int speed = 2;
 
 	public static void main(String[] args) {
 		Window.createDecoratedWindow("Test Mouse Controls", null);
@@ -21,24 +23,20 @@ public class MouseClickControls implements EngineLoopInterface {
 
 	@Override
 	public void init() {
-		
+		MouseControl.addMouse(this);
 	}
 
 	@Override
 	public void update() {
-		if (MouseControl.hasMouseChangedPosition()) {
-			mouseX = MouseControl.getMouseLeftClickPosition().x;
-			mouseY = MouseControl.getMouseLeftClickPosition().y;
-		}
-		
-		if (x > mouseX)
-			x -= 1;
 		if (x < mouseX)
-			x += 1;
-		if (y > mouseY)
-			y -= 1;
+			x += speed;
+		if (x > mouseX)
+			x -= speed;
+		
 		if (y < mouseY)
-			y += 1;
+			y += speed;
+		if (y > mouseY)
+			y -= speed;
 	}
 
 	@Override
@@ -50,5 +48,23 @@ public class MouseClickControls implements EngineLoopInterface {
 	@Override
 	public void cleanup() {
 		
+	}
+
+	@Override
+	public void lmPressed(int mouseX, int mouseY) {
+		this.mouseX = mouseX;
+		this.mouseY = mouseY;
+	}
+
+	@Override
+	public void rmPressed(int mouseX, int mouseY) {
+		this.mouseX = mouseX;
+		this.mouseY = mouseY;
+	}
+
+	@Override
+	public void mmPressed(int mouseX, int mouseY) {
+		this.mouseX = mouseX;
+		this.mouseY = mouseY;
 	}
 }

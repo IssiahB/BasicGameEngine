@@ -1,68 +1,65 @@
 package org.jarzarr.code.controls;
 
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MouseControl implements MouseListener {
 	
-	private static int mouseOldX = 0, mouseOldY = 0;
-	private static Point mouseLeftClickPosition = new Point(0, 0);
-	private static boolean mouseChangedPosition = false;
+	private static List <MouseInterface> interfaces = new ArrayList<MouseInterface>();
+	private int mouseX = 0, mouseY = 0;
+	private int mouseType = 1;
 	
-	public static void updateMouse() {
-		mouseChangedPosition = false;
+	private void updateInterfaces() {
+		interfaces.parallelStream().forEach(inter -> {
+			if (mouseType == 1)
+				inter.lmPressed(mouseX, mouseY);
+			if (mouseType == 2)
+				inter.mmPressed(mouseX, mouseY);
+			if (mouseType == 3)
+				inter.rmPressed(mouseX, mouseY);
+		});
+	}
+	
+	public static void addMouse(MouseInterface mouse) {
+		if (mouse == null)
+			return;
 		
-		if (mouseOldX != mouseLeftClickPosition.x) {
-			mouseChangedPosition = true;
-			mouseOldX = mouseLeftClickPosition.x;
-		}
-		if (mouseOldY != mouseLeftClickPosition.y) {
-			mouseChangedPosition = true;
-			mouseOldY = mouseLeftClickPosition.y;
-		}
+		interfaces.add(mouse);
+	}
+	
+	public static void removeMouse(MouseInterface mouse) {
+		if (mouse == null)
+			return;
+		
+		interfaces.remove(mouse);
+	}
+	
+	public static boolean containsMouse(MouseInterface mouse) {
+		if (mouse == null)
+			return false;
+		
+		return (interfaces.contains(mouse));
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getButton() == MouseEvent.BUTTON1)
-			mouseLeftClickPosition.setLocation(e.getX(), e.getY());
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-				
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
+		if (interfaces.size() < 1)
+			return;
 		
+		mouseX = e.getX();
+		mouseY = e.getY();
+		mouseType = e.getButton();
+		updateInterfaces();
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		
-	}
-
+	public void mouseEntered(MouseEvent e) {}
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		
-	}
-	
-	/**
-	 * @return The last position on screen the left mouse button
-	 * was clicked as a Point object
-	 */
-	public static Point getMouseLeftClickPosition() {
-		return mouseLeftClickPosition;
-	}
-	
-	/**
-	 * @return true if mouse clicked position has changed from last clicked position
-	 * false otherwise
-	 */
-	public static boolean hasMouseChangedPosition() {
-		return mouseChangedPosition;
-	}
-
+	public void mouseExited(MouseEvent e) {}
+	@Override
+	public void mousePressed(MouseEvent e) {}
+	@Override
+	public void mouseReleased(MouseEvent e) {}
 }
