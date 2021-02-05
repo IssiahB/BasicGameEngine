@@ -33,7 +33,7 @@ public class Window {
 
 		canvas = new Canvas();
 		frame = new JFrame(title);
-		frame.addKeyListener(new KeyboardControl());
+		canvas.addKeyListener(new KeyboardControl());
 		canvas.addMouseListener(new MouseControl());
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,7 +66,7 @@ public class Window {
 
 		canvas = new Canvas();
 		frame = new JFrame(title);
-		frame.addKeyListener(new KeyboardControl());
+		canvas.addKeyListener(new KeyboardControl());
 		canvas.addMouseListener(new MouseControl());
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,7 +101,7 @@ public class Window {
 
 		canvas = new Canvas();
 		frame = new JFrame(title);
-		frame.addKeyListener(new KeyboardControl());
+		canvas.addKeyListener(new KeyboardControl());
 		canvas.addMouseListener(new MouseControl());
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

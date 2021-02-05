@@ -7,7 +7,7 @@ public class KeyboardControl implements KeyListener {
 	
 	private static boolean[] keys = new boolean[120];
 	public static boolean wKey = false, aKey = false, sKey = false, dKey = false;
-	public static boolean shiftKey = false, spaceKey = false;
+	public static boolean shiftKey = false, spaceKey = false, escKey = false;
 	
 	public static void updateKeys() {
 		wKey = keys[KeyEvent.VK_W];
@@ -17,6 +17,7 @@ public class KeyboardControl implements KeyListener {
 		
 		shiftKey = keys[KeyEvent.VK_SHIFT];
 		spaceKey = keys[KeyEvent.VK_SPACE];
+		escKey = keys[KeyEvent.VK_ESCAPE];
 	}
 
 	@Override
@@ -34,6 +35,8 @@ public class KeyboardControl implements KeyListener {
 			keys[KeyEvent.VK_SHIFT] = true;
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 			keys[KeyEvent.VK_SPACE] = true;
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+			keys[KeyEvent.VK_ESCAPE] = true;
 	}
 
 	@Override
@@ -51,6 +54,8 @@ public class KeyboardControl implements KeyListener {
 			keys[KeyEvent.VK_SHIFT] = false;
 		if (e.getKeyCode() == KeyEvent.VK_SPACE)
 			keys[KeyEvent.VK_SPACE] = false;
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE)
+			keys[KeyEvent.VK_ESCAPE] = false;
 	}
 
 	@Override

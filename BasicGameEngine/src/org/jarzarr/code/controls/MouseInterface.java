@@ -1,7 +1,8 @@
 package org.jarzarr.code.controls;
 
+import java.awt.event.MouseEvent;
+
 public interface MouseInterface {
-	public void lmPressed(int mouseX, int mouseY);
-	public void rmPressed(int mouseX, int mouseY);
-	public void mmPressed(int mouseX, int mouseY);
+	public void mousePressed(MouseEvent event);
+	public void mouseReleased(MouseEvent event);
 }

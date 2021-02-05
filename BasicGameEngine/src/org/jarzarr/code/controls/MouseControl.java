@@ -6,21 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MouseControl implements MouseListener {
-	
 	private static List <MouseInterface> interfaces = new ArrayList<MouseInterface>();
-	private int mouseX = 0, mouseY = 0;
-	private int mouseType = 1;
-	
-	private void updateInterfaces() {
-		interfaces.parallelStream().forEach(inter -> {
-			if (mouseType == 1)
-				inter.lmPressed(mouseX, mouseY);
-			if (mouseType == 2)
-				inter.mmPressed(mouseX, mouseY);
-			if (mouseType == 3)
-				inter.rmPressed(mouseX, mouseY);
-		});
-	}
 	
 	public static void addMouse(MouseInterface mouse) {
 		if (mouse == null)
@@ -44,22 +30,28 @@ public class MouseControl implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		if (interfaces.size() < 1)
-			return;
-		
-		mouseX = e.getX();
-		mouseY = e.getY();
-		mouseType = e.getButton();
-		updateInterfaces();
-	}
-
+	public void mouseClicked(MouseEvent e) {}
 	@Override
 	public void mouseEntered(MouseEvent e) {}
 	@Override
 	public void mouseExited(MouseEvent e) {}
 	@Override
-	public void mousePressed(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {
+		if (interfaces.size() < 1)
+			return;
+		
+		interfaces.parallelStream().forEach(inter -> {
+			inter.mousePressed(e);
+		});
+	}
+	
 	@Override
-	public void mouseReleased(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+		if (interfaces.size() < 1)
+			return;
+		
+		interfaces.parallelStream().forEach(inter -> {
+			inter.mouseReleased(e);
+		});
+	}
 }
