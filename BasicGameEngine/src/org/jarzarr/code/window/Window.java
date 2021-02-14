@@ -36,7 +36,7 @@ public class Window {
 		canvas.addKeyListener(new KeyboardControl());
 		canvas.addMouseListener(new MouseControl());
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setResizable(true);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setMinimumSize(new Dimension(500, 300));
@@ -69,7 +69,7 @@ public class Window {
 		canvas.addKeyListener(new KeyboardControl());
 		canvas.addMouseListener(new MouseControl());
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setResizable(true);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setMinimumSize(new Dimension(500, 300));
@@ -104,7 +104,7 @@ public class Window {
 		canvas.addKeyListener(new KeyboardControl());
 		canvas.addMouseListener(new MouseControl());
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setResizable(false);
 		Dimension frameSize = new Dimension(width, height);
 		frame.setMinimumSize(frameSize);

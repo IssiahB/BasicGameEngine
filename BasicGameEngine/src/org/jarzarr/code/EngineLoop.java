@@ -58,7 +58,7 @@ public class EngineLoop implements Runnable {
 	public void run() {
 		loopInter.init();
 
-		boolean loopRunning = running;
+		boolean widnowVisible = true;
 
 		double maxFrameTime = 1000000000 / 60;
 		double delta = 0;
@@ -68,7 +68,7 @@ public class EngineLoop implements Runnable {
 		int update = 0;
 
 		// the main loop
-		while (loopRunning && running) {
+		while (widnowVisible && running) {
 			now = System.nanoTime();
 			delta += (now - lastTime) / maxFrameTime;
 			timer += now - lastTime;
@@ -87,8 +87,8 @@ public class EngineLoop implements Runnable {
 				timer = 0;
 			}
 
-			if (loopRunning)
-				loopRunning = Window.getFrame().isVisible();
+			if (widnowVisible)
+				widnowVisible = Window.getFrame().isVisible();
 		}
 
 		this.stop();
@@ -118,6 +118,10 @@ public class EngineLoop implements Runnable {
 
 	public static boolean isRunning() {
 		return running;
+	}
+	
+	public static void endLoop() {
+		running = false;
 	}
 
 }
