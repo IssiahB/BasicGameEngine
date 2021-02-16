@@ -120,8 +120,13 @@ public class EngineLoop implements Runnable {
 		return running;
 	}
 	
+	/**
+	 * Ends the main game loop by destroying
+	 * the window the game loop is running
+	 * for
+	 */
 	public static void endLoop() {
-		running = false;
+		Window.cleanUp();
 	}
 
 }

@@ -118,12 +118,16 @@ public class Window {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Removes the canvas from the frame
+	 * and disposes the frame
+	 */
 	public static void cleanUp() {
 		if (frame == null || canvas == null)
 			return;
 		
-		canvas.getGraphics().dispose();
-		frame.getContentPane().removeAll();
+		frame.getContentPane().remove(canvas);
+		frame.setVisible(false);
 		frame.dispose();
 		
 	}
