@@ -117,6 +117,16 @@ public class Window {
 		frame.getContentPane().add(canvas);
 		frame.setVisible(true);
 	}
+	
+	public static void cleanUp() {
+		if (frame == null || canvas == null)
+			return;
+		
+		canvas.getGraphics().dispose();
+		frame.getContentPane().removeAll();
+		frame.dispose();
+		
+	}
 
 	public static Canvas getCanvas() {
 		return canvas;

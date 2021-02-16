@@ -2,6 +2,7 @@ package org.jarzarr.test.controls;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
 
 import org.jarzarr.code.EngineLoop;
 import org.jarzarr.code.EngineLoopInterface;
@@ -47,24 +48,24 @@ public class MouseClickControls implements EngineLoopInterface, MouseInterface {
 
 	@Override
 	public void cleanup() {
+		System.out.println("Clean");
+	}
+
+	@Override
+	public void mousePressed(MouseEvent event) {
+		mouseX = event.getX();
+		mouseY = event.getY();
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent event) {
+		int mouseRelX = event.getX();
+		int mouseRelY = event.getY();
 		
-	}
-
-	@Override
-	public void lmPressed(int mouseX, int mouseY) {
-		this.mouseX = mouseX;
-		this.mouseY = mouseY;
-	}
-
-	@Override
-	public void rmPressed(int mouseX, int mouseY) {
-		this.mouseX = mouseX;
-		this.mouseY = mouseY;
-	}
-
-	@Override
-	public void mmPressed(int mouseX, int mouseY) {
-		this.mouseX = mouseX;
-		this.mouseY = mouseY;
+		if (mouseRelX == mouseX && mouseRelY == mouseY) {
+			System.out.println("Mouse Released At Same Position Pressed");
+		} else {
+			System.out.println("Mouse Released At Different Position Pressed");
+		}
 	}
 }
